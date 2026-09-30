@@ -1,5 +1,5 @@
 from typing import Annotated
-
+from functools import lru_cache
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
@@ -23,7 +23,9 @@ class Settings(BaseConfigSettings):
     postgres_pool_size: int = 20
     postgres_max_overflow: int = 0
 
+    # OpenSearch
     opensearch_host: str = "http://localhost:9200"
+
     # Ollama
     ollama_host: str = "http://localhost:11434"
     ollama_models: Annotated[list[str], NoDecode] = ["llama3.2:1b"]
@@ -39,5 +41,6 @@ class Settings(BaseConfigSettings):
         return v
 
 
+@lru_cache
 def get_settings() -> Settings:
     return Settings()
