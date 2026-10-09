@@ -21,7 +21,7 @@ vectorstore/
 *.faiss
 *.pkl
 chroma_db/
-
+prompt.json
 # Notebooks
 .ipynb_checkpoints/
 
